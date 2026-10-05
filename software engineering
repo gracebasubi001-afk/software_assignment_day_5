@@ -1,0 +1,159 @@
+Name; Grace Basubi
+Date; 05,october,2026
+Course; software Engineering
+Learning Hub; Girl Power
+
+
+Creating and Activating a Python Virtual Environment and Installing a Package
+
+Purpose
+
+This procedure will teach you to create an isolated Python environment (also known as virtual environment), activate it, and install a package within it. An environment created in this way allows you to keep your Python projects separate by keeping their installed packages isolated.
+
+Prerequisites
+
+In order to follow this procedure, you will need:
+
+a computer running either Windows 10/11, macOS, or Linux
+
+Python 3.8 or newer installed on your system. If you are installing Python as part of this procedure, make sure to check the “Add python.exe to PATH” option on the first screen of the installer for Windows;
+
+an internet connection, which is required to install a Python package in the step 9 below;
+
+a terminal emulator:
+
+for Windows, you can use PowerShell (search for it in the Start menu);
+
+for macOS, the terminal emulator is called Terminal and can be found in the Applications > Utilities folder;
+
+Linux distributions typically have a terminal emulator preinstalled
+
+about 50 MB of disk space;
+
+and some familiarity with using the command line: you should be able to type in a command exactly as it is written and press Enter to execute it.
+
+The instructions below use code blocks to represent commands that should be typed into the terminal emulator. The commands written in Windows PowerShell syntax are listed first, and the commands written in macOS/Linux bash syntax are listed after them, if they differ.
+
+Procedure
+
+Step 1. Open your terminal emulator
+
+PowerShell (Windows) or Terminal (macOS/Linux).
+Launch 
+You should see a window with a blinking cursor after a line that ends with something similar to in > or $.
+
+Step 2. Let’s make sure Python is installed
+
+python --version
+
+python3 --version # macOS/Linux
+
+The terminal should output a line that starts with Python 3.12.4 or similar. Any version that starts with 3.8 is acceptable.
+
+Step 3. Now, let’s create a folder that will hold our Python project
+
+mkdir my_project
+
+The terminal should not output any error messages and should display a new line with the prompt at the end of it.
+
+Step 4. Let’s change the current directory to the one we just created
+
+cd my_project
+
+The prompt should now include my_project at the beginning.
+
+Step 5. Let’s create a virtual environment
+python -m venv .venv
+
+
+python3 -m venv .venv # macOS/Linux
+
+You may see several lines of output scroll by, and then the prompt would return. There should be no errors.
+
+Step 6. Let’s confirm that the virtual environment was created
+
+dir
+
+ls -a # macOS/Linux
+
+You should see a folder named .venv in the output.
+
+Step 7. Let’s activate the virtual environment
+
+.venv\Scripts\Activate.ps1
+
+source .venv/bin/activate # macOS/Linux
+
+The activation command does not output anything, but the prompt should change.
+
+Step 8. Verify that the environment was activated by checking the beginning of the prompt line
+
+Expected result: the text (.venv) should be visible at the beginning of the prompt line. See the screenshot below for reference.
+
+Insert a cropped screenshot of your terminal emulator window below this step. The image should have a dark background and a light colored prompt at the bottom. The final line should start with something similar to (.venv) PS C:\Users\student\my_project>. Use a red rectangle to highlight the (.venv) part and add a callout arrow pointing to it with the label “Activation indicator: this means the environment is activated.” The line above it should have the commands from steps 3, 5, and 6 so that the user knows what to do next.
+
+Step 9. Let’s install a Python package called requests
+
+pip install requests
+
+You should see several lines of output scroll by before the prompt returns. The last line should mention Successfully installed requests-2.x.x along with several other packages.
+
+Step 10. Let’s verify that the package was installed by listing all installed Python packages
+
+pip list
+
+The prompt should return a table of installed packages, including requests as well as pip itself and several related packages.
+
+Step 11. Let’s verify that Python can actually use the installed package
+
+python -c "import requests; print(requests.__version__)"
+
+The prompt should print a version number similar to 2.32.3 and return to the prompt.
+
+Insert a screenshot of your terminal emulator window that shows the output from the commands executed in steps 9, 10, and 11. The image should show the line with Successfully installed requests-2.x.x, the table of packages listed by pip list (with the requests row highlighted in yellow), and the line with the printed version number at the bottom. Add a caption below the image saying that these three outputs confirm that the package was installed in the virtual environment.
+
+Step 12. Finally, let’s deactivate the virtual environment when we are done
+
+deactivate
+
+The prompt should no longer have the (.venv) prefix at the beginning.
+
+Troubleshooting: “running scripts is disabled on this system”
+
+If you see a red error message that says something similar to “Activate.ps1 cannot be loaded because running scripts is disabled on this system,” you can follow these instructions to fix the issue.
+
+The reason for this error is that Windows PowerShell does not allow scripts to run by default for security reasons, and the activation script for our virtual environment is written as a PowerShell script.
+
+To fix the issue, type the following command in the same PowerShell window that you used to create the virtual environment:
+
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+
+When prompted to confirm the change, type Y and press Enter. Then, try running the activation command, .venv\Scripts\Activate.ps1 , again.
+
+You should see the prompt change and have the (.venv) prefix at the beginning, which means the virtual environment was successfully activated. This change should persist for all future PowerShell sessions, but it only applies to your user account. If you are not comfortable with this change, you can use an alternate command interpreter. For Windows users, that would be Command Prompt, and the activation command would be .venv\Scripts\activate .
+
+Quick Reference
+
+Goal
+
+Command
+
+Create environment
+
+python -m venv .venv
+
+Activate (Windows)
+
+.venv\Scripts\Activate.ps1
+
+Activate (macOS/Linux)
+
+source .venv/bin/activate
+
+Install a package
+
+pip install
+
+Deactivate
+
+deactivate
